@@ -1,0 +1,14 @@
+C:\Users\Tinifan\source\repos\DBFrandomizer\DBFrandomizer\bin\Release\DBFrandomizer.exe.config
+C:\Users\Tinifan\source\repos\DBFrandomizer\DBFrandomizer\bin\Release\DBFrandomizer.exe
+C:\Users\Tinifan\source\repos\DBFrandomizer\DBFrandomizer\bin\Release\DBFrandomizer.pdb
+C:\Users\Tinifan\source\repos\DBFrandomizer\DBFrandomizer\bin\Release\EndianBitConverter.dll
+C:\Users\Tinifan\source\repos\DBFrandomizer\DBFrandomizer\bin\Release\EndianBitConverter.xml
+C:\Users\Tinifan\source\repos\DBFrandomizer\DBFrandomizer\obj\Release\DBFrandomizer.csproj.AssemblyReference.cache
+C:\Users\Tinifan\source\repos\DBFrandomizer\DBFrandomizer\obj\Release\DBFrandomizer.csproj.SuggestedBindingRedirects.cache
+C:\Users\Tinifan\source\repos\DBFrandomizer\DBFrandomizer\obj\Release\DBFrandomizer.RandomizerWindow.resources
+C:\Users\Tinifan\source\repos\DBFrandomizer\DBFrandomizer\obj\Release\DBFrandomizer.Properties.Resources.resources
+C:\Users\Tinifan\source\repos\DBFrandomizer\DBFrandomizer\obj\Release\DBFrandomizer.csproj.GenerateResource.cache
+C:\Users\Tinifan\source\repos\DBFrandomizer\DBFrandomizer\obj\Release\DBFrandomizer.csproj.CoreCompileInputs.cache
+C:\Users\Tinifan\source\repos\DBFrandomizer\DBFrandomizer\obj\Release\DBFrandomizer.csproj.CopyComplete
+C:\Users\Tinifan\source\repos\DBFrandomizer\DBFrandomizer\obj\Release\DBFrandomizer.exe
+C:\Users\Tinifan\source\repos\DBFrandomizer\DBFrandomizer\obj\Release\DBFrandomizer.pdb
