@@ -39,6 +39,6 @@ My tool couldn't have been done without the logic that I could learn by studying
 16. Save and close Cpk Browser
 17. Use a patching method to patch your game, you can google it layeredFS 3DS or layeredFS Citra
 
-[Join the Official DBF Modding Discord!](https://discord.gg/FV2YJZ7YJxx)
+[Join the Official DBF Modding Discord!](https://discord.gg/V2YJZ7YJxx)
 
 [Direct Download Link](https://github.com/Tiniifan/DBFrandomizer/releases/download/1.2.0.1/DBFrandomizer.zip)
