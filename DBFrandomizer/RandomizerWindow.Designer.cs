@@ -78,6 +78,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.randomizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.learnableSkillCheckBox = new System.Windows.Forms.CheckBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -88,7 +90,9 @@
             this.groupBox6.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -598,12 +602,13 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.groupBox8);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(380, 210);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "skill_learn_param";
+            this.tabPage3.Text = "skill_learn_param.bin";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // menuStrip1
@@ -632,6 +637,26 @@
             this.randomizeToolStripMenuItem.Text = "Randomize";
             this.randomizeToolStripMenuItem.Click += new System.EventHandler(this.RandomizeToolStripMenuItem_Click);
             // 
+            // learnableSkillCheckBox
+            // 
+            this.learnableSkillCheckBox.AutoSize = true;
+            this.learnableSkillCheckBox.Location = new System.Drawing.Point(6, 19);
+            this.learnableSkillCheckBox.Name = "learnableSkillCheckBox";
+            this.learnableSkillCheckBox.Size = new System.Drawing.Size(95, 17);
+            this.learnableSkillCheckBox.TabIndex = 0;
+            this.learnableSkillCheckBox.Text = "Learnable Skill";
+            this.learnableSkillCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.learnableSkillCheckBox);
+            this.groupBox8.Location = new System.Drawing.Point(13, 6);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(361, 198);
+            this.groupBox8.TabIndex = 1;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Skills";
+            // 
             // RandomizerWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -639,6 +664,8 @@
             this.ClientSize = new System.Drawing.Size(408, 271);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
+            this.MaximumSize = new System.Drawing.Size(424, 310);
+            this.MinimumSize = new System.Drawing.Size(424, 310);
             this.Name = "RandomizerWindow";
             this.Text = "DBFrandomizer";
             this.tabControl1.ResumeLayout(false);
@@ -658,8 +685,11 @@
             this.groupBox5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -717,6 +747,8 @@
         private System.Windows.Forms.CheckBox meleeCheckBox;
         private System.Windows.Forms.CheckBox hpCheckBox;
         private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.CheckBox learnableSkillCheckBox;
     }
 }
 

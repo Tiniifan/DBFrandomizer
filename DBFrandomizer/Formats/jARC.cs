@@ -15,6 +15,8 @@ namespace DBFrandomizer.Formats
 
         public jARCSupport.Header Header;
 
+        public jARCSupport.FileEntry[] FileEntries;
+
         public VirtualDirectory Directory;
 
         public jARC(Stream stream)
@@ -31,8 +33,8 @@ namespace DBFrandomizer.Formats
             Header = data.ReadStruct<jARCSupport.Header>();
 
             // Get files
-            var fileEntries = data.ReadMultipleStruct<jARCSupport.FileEntry>(Header.FileCount);
-            foreach (var entry in fileEntries)
+            FileEntries = data.ReadMultipleStruct<jARCSupport.FileEntry>(Header.FileCount);
+            foreach (var entry in FileEntries)
             {
                 folder.AddFile(entry.Hash2.ToString("X8") + ".bin", new SubMemoryStream(BaseStream, entry.Offset, entry.Size));
             }
@@ -51,7 +53,8 @@ namespace DBFrandomizer.Formats
             using (FileStream stream = new FileStream(filename, FileMode.Create, FileAccess.Write))
             {
                 BinaryDataWriter writer = new BinaryDataWriter(stream);
-                writer.WriteStruct<jARCSupport.Header>(Header);
+                writer.WriteStruct(Header);
+                writer.WriteMultipleStruct(FileEntries);
 
                 foreach (var file in Directory.Files)
                 {

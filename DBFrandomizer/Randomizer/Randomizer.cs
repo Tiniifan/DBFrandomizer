@@ -42,7 +42,7 @@ namespace DBFrandomizer.Randomizer
 
             using (BinaryDataReader reader = new BinaryDataReader(new FileStream(filename, FileMode.Open)))
             {
-                int itemCount = (int) reader.Length / 0x1C;
+                int itemCount = (int)reader.Length / 0x1C;
 
                 for (int i = 0; i < itemCount; i++)
                 {
@@ -52,7 +52,7 @@ namespace DBFrandomizer.Randomizer
             }
 
             // Remove empty id
-            return ids.Where(x => x != 0xFFFFFFFF).ToList();
+            return ids.Where(x => x != 0xFFFFFFFF & x != 0x0).ToList();
         }
 
         private DBFlogic.RGB RandomRGB()
@@ -127,10 +127,10 @@ namespace DBFrandomizer.Randomizer
 
                             configureWriter.WriteStruct(configure);
                         }
-
-                        // Replace file content
-                        file.Value.ByteContent = memoryStream.ToArray();
                     }
+
+                    // Replace file content
+                    file.Value.ByteContent = memoryStream.ToArray();
                 }
             }
 
@@ -198,6 +198,13 @@ namespace DBFrandomizer.Randomizer
                         baseParams[i].Race = setting["raceCheckBox"] ? (byte)Seed.Next(0, 5) : baseParams[i].Race;
                         baseParams[i].Gender = setting["genderCheckBox"] ? (byte)Seed.Next(0, 2) : baseParams[i].Gender;
                         baseParams[i].SpecialPose = setting["poseCheckBox"] ? (byte)Seed.Next(0, 47) : baseParams[i].SpecialPose;
+                        if (setting["skillsCheckBox"])
+                        {
+                            List<int> randomIndex = Seed.GetNumbers(0, Skill.Skills.Count, 3);
+                            baseParams[i].SkillsID[0] = Skill.Skills.ElementAt(randomIndex[0]).Key;
+                            baseParams[i].SkillsID[1] = Skill.Skills.ElementAt(randomIndex[1]).Key;
+                            baseParams[i].SkillsID[2] = Skill.Skills.ElementAt(randomIndex[2]).Key;
+                        }
 
                         // Randomize stats
                         baseParams[i].BaseStat.HP = setting["hpCheckBox"] ? Seed.Next(800, 1101) : baseParams[i].BaseStat.HP;
@@ -230,6 +237,44 @@ namespace DBFrandomizer.Randomizer
 
                     // Write
                     baseparamWriter.WriteMultipleStruct(baseParams);
+                }
+            }
+        }
+
+        public void RandomizeSkillLearnParamBin(Dictionary<string, bool> setting)
+        {
+            string savePath = OutputPath + "/battle/pac/chara_ex_skill_learn_param.bin";
+
+            string directoryPath = Path.GetDirectoryName(savePath);
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+
+            using (BinaryDataWriter learnparamWriter = new BinaryDataWriter(new FileStream(savePath, FileMode.Create, FileAccess.Write)))
+            {
+                using (BinaryDataReader learnparamReader = new BinaryDataReader(new FileStream(DirectoryPath + "/battle/pac/chara_ex_skill_learn_param.bin", FileMode.Open)))
+                {
+                    int characterCount = (int)learnparamReader.Length / 0x88;
+                    DBFlogic.LearnParam[] learnParams = learnparamReader.ReadMultipleStruct<DBFlogic.LearnParam>(characterCount);
+
+                    // Randomize
+                    if (setting["learnableSkillCheckBox"])
+                    {
+                        for (int i = 0; i < characterCount; i++)
+                        {
+                            // Generate random moveset
+                            List<int> randomIndex = Seed.GetNumbers(0, SpecialMove.SpecialMoves.Count, 16);
+
+                            for (int j = 0; j < 16; j++)
+                            {
+                                learnParams[i].Skills[j].SkillID = SpecialMove.SpecialMoves[randomIndex[j]];
+                            }
+                        }
+                    }
+
+                    // Write
+                    learnparamWriter.WriteMultipleStruct(learnParams);
                 }
             }
         }

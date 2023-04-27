@@ -57,6 +57,8 @@
   <ItemGroup>
     <Compile Include="Common\Model.cs" />
     <Compile Include="Common\Name.cs" />
+    <Compile Include="Common\Skill.cs" />
+    <Compile Include="Common\SpecialMove.cs" />
     <Compile Include="Common\Voice.cs" />
     <Compile Include="Common\Style.cs" />
     <Compile Include="Common\Description.cs" />

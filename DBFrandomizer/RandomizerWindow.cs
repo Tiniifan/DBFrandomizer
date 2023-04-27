@@ -75,6 +75,7 @@ namespace DBFrandomizer
 
             Randomizer.RandomizeConfigureJarc(GetRandomierSetting(tabPage1));
             Randomizer.RandomizeBaseParamBin(GetRandomierSetting(tabPage2));
+            Randomizer.RandomizeSkillLearnParamBin(GetRandomierSetting(tabPage3));
 
             MessageBox.Show("Randomized sucessfull! Check root_randomized_jarc folder");
         }

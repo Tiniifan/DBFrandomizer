@@ -61,6 +61,12 @@ namespace DBFrandomizer.Logic
             public short Luck;
         }
 
+        public struct LearnSkill
+        {
+            public uint SkillID;
+            public uint Unk;
+        }
+
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
         public struct BaseParam
         {
@@ -86,6 +92,15 @@ namespace DBFrandomizer.Logic
             public uint[] SkillsID;
             public int NumberID;
             public uint Unk6;
+        }
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct LearnParam
+        {
+            public uint CharacterID;
+            public uint Unk1;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)]
+            public LearnSkill[] Skills;
         }
     }
 }
