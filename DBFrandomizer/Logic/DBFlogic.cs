@@ -13,7 +13,6 @@ namespace DBFrandomizer.Logic
             public float B;
         }
 
-
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
         public struct Configure
         {
@@ -51,6 +50,42 @@ namespace DBFrandomizer.Logic
             public byte Gender;
             public byte Race;
             public byte HasRing;
+        }
+
+        public struct Stat
+        {
+            public int HP;
+            public short Melee;
+            public short KiBlast;
+            public short Defense;
+            public short Luck;
+        }
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct BaseParam
+        {
+            public uint CharacterID;
+            private byte Unk1;
+            public byte Rank;
+            private byte Unk2;
+            public byte Race;
+            private byte Unk3;
+            public byte Gender;
+            private byte Unk4;
+            public byte SpecialPose;
+            public uint FightingStyleID;
+            public uint ModelID;
+            public uint TransormationID;
+            public uint NameID;
+            public uint DescriptionID;
+            public uint VoiceID;
+            public Stat BaseStat;
+            public Stat GrownStat;
+            public uint Unk5;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 0x03)]
+            public uint[] SkillsID;
+            public int NumberID;
+            public uint Unk6;
         }
     }
 }

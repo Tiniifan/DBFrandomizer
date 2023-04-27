@@ -9,11 +9,19 @@ namespace DBFrandomizer.Formats
         public struct Header
         {
             public UInt32 Magic;
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 0x08)]
-            public byte[] UnkBlock1;
-            public int Count;
+            public int Length;
+            private int Unk1;
+            public int FileCount;
+        }
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct FileEntry
+        {
             public int Offset;
             public int Size;
+            public uint Unk1;
+            public uint Hash1;
+            public uint Hash2;
         }
     }
 }

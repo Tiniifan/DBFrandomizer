@@ -13,6 +13,8 @@ namespace DBFrandomizer.Formats
     {
         public Stream BaseStream;
 
+        public jARCSupport.Header Header;
+
         public VirtualDirectory Directory;
 
         public jARC(Stream stream)
@@ -26,41 +28,35 @@ namespace DBFrandomizer.Formats
             VirtualDirectory folder = new VirtualDirectory();
 
             BinaryDataReader data = new BinaryDataReader(BaseStream);
-            var header = data.ReadStruct<jARCSupport.Header>();
+            Header = data.ReadStruct<jARCSupport.Header>();
 
             // Get files
-            data.Seek((uint)header.Offset);
-            for (int i =0; i < header.Count; i++)
+            var fileEntries = data.ReadMultipleStruct<jARCSupport.FileEntry>(Header.FileCount);
+            foreach (var entry in fileEntries)
             {
-                long position = data.Position;
-                var fileName = Encoding.UTF8.GetString(data.GetSection(6)) + "_" + Encoding.UTF8.GetString(data.GetSection(10));
-                folder.AddFile(fileName, new SubMemoryStream(BaseStream, position, header.Size));
-                data.Skip(0x110);
+                folder.AddFile(entry.Hash2.ToString("X8") + ".bin", new SubMemoryStream(BaseStream, entry.Offset, entry.Size));
             }
-
-            // Sort files by name
-            folder.Reorganize();
-            folder.SortAlphabetically();
 
             return folder;
         }
 
         public void Save(string filename)
         {
-            // No add implemented
+            string directoryPath = Path.GetDirectoryName(filename);
+            if (!System.IO.Directory.Exists(directoryPath))
+            {
+                System.IO.Directory.CreateDirectory(directoryPath);
+            }
 
             using (FileStream stream = new FileStream(filename, FileMode.Create, FileAccess.Write))
             {
-                BaseStream.Position = 0;
-                BaseStream.CopyTo(stream);
+                BinaryDataWriter writer = new BinaryDataWriter(stream);
+                writer.WriteStruct<jARCSupport.Header>(Header);
 
                 foreach (var file in Directory.Files)
                 {
-                    if (file.Value.ByteContent != null)
-                    {
-                        stream.Position = file.Value.Offset;
-                        file.Value.CopyTo(stream);
-                    }
+                    stream.Position = file.Value.Offset;
+                    file.Value.CopyTo(stream);
                 }
             }
         }
