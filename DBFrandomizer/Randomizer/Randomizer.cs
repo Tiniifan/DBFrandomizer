@@ -11,18 +11,6 @@ namespace DBFrandomizer.Randomizer
 {
     public class Randomizer
     {
-        public List<uint> Body;
-
-        public List<uint> Face;
-
-        public List<uint> Hair;
-
-        public List<uint> Head;
-
-        public List<uint> Item;
-
-        public List<uint> Leg;
-
         public string DirectoryPath;
 
         public string OutputPath;
@@ -68,11 +56,12 @@ namespace DBFrandomizer.Randomizer
 
         public void Open()
         {
-            Body = GetListIdFromFile(DirectoryPath + "/chara/param/part_body.bin");
-            Face = GetListIdFromFile(DirectoryPath + "/chara/param/part_face.bin");
-            Hair = GetListIdFromFile(DirectoryPath + "/chara/param/part_hair.bin");
-            Head = GetListIdFromFile(DirectoryPath + "/chara/param/part_head.bin");
-            Leg = GetListIdFromFile(DirectoryPath + "/chara/param/part_leg.bin");
+            // Unused
+            //Body = GetListIdFromFile(DirectoryPath + "/chara/param/part_body.bin");
+            //Face = GetListIdFromFile(DirectoryPath + "/chara/param/part_face.bin");
+            //Hair = GetListIdFromFile(DirectoryPath + "/chara/param/part_hair.bin");
+            //Head = GetListIdFromFile(DirectoryPath + "/chara/param/part_head.bin");
+            //Leg = GetListIdFromFile(DirectoryPath + "/chara/param/part_leg.bin");
         }
 
         public void RandomizeConfigureJarc(Dictionary<string, bool> setting)
@@ -97,12 +86,12 @@ namespace DBFrandomizer.Randomizer
                             var configure = configureReader.ReadStruct<DBFlogic.Configure>();
 
                             // Randomize apparence
-                            configure.TopID = setting["topCheckBox"] ? Body[Seed.Next(0, Body.Count)] : configure.TopID;
-                            configure.HairID = setting["hairCheckBox"] ? Hair[Seed.Next(0, Hair.Count)] : configure.HairID;
-                            configure.FaceID = setting["faceCheckBox"] ? Face[Seed.Next(0, Face.Count)] : configure.FaceID;
-                            configure.BottomID = setting["bottomCheckBox"] ? Leg[Seed.Next(0, Leg.Count)] : configure.BottomID;
+                            configure.TopID = setting["topCheckBox"] ? Top.Tops.ElementAt(Seed.Next(0, Top.Tops.Count)).Key : configure.TopID;
+                            configure.HairID = setting["hairCheckBox"] ? Hair.Hairs.ElementAt(Seed.Next(0, Hair.Hairs.Count)).Key : configure.HairID;
+                            configure.FaceID = setting["faceCheckBox"] ? Face.Faces.ElementAt(Seed.Next(0, Face.Faces.Count)).Key : configure.FaceID;
+                            configure.BottomID = setting["bottomCheckBox"] ? Bottom.Bottoms.ElementAt(Seed.Next(0, Bottom.Bottoms.Count)).Key : configure.BottomID;
                             configure.BodyID = setting["bodyCheckBox"] ? Seed.Next(0, 22) : configure.BodyID;
-                            configure.FaceFormID = setting["faceFormCheckBox"] ? Head[Seed.Next(0, Head.Count)] : configure.FaceFormID;
+                            configure.FaceFormID = setting["faceFormCheckBox"] ? FaceForm.FaceForms.ElementAt(Seed.Next(0, FaceForm.FaceForms.Count)).Key : configure.FaceFormID;
 
                             // Randomize color
                             configure.Top1Color = setting["topColorCheckBox"] ? RandomRGB() : configure.Top1Color;

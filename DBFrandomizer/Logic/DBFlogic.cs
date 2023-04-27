@@ -50,6 +50,7 @@ namespace DBFrandomizer.Logic
             public byte Gender;
             public byte Race;
             public byte HasRing;
+            public uint Unk;
         }
 
         public struct Stat

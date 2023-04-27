@@ -109,10 +109,18 @@ namespace DBFrandomizer
 
         private void RestrictSwap(object sender, EventArgs e)
         {
-            CheckBox checkBox = sender as CheckBox;
+            bool isAnyCheckboxChecked = false;
+            foreach (var checkBox in groupBox6.Controls.OfType<CheckBox>())
+            {
+                if (checkBox.Checked)
+                {
+                    isAnyCheckboxChecked = true;
+                    break;
+                }
+            }
 
             swapCharacterCheckBox.Checked = false;
-            swapCharacterCheckBox.Enabled = !checkBox.Checked;
+            swapCharacterCheckBox.Enabled = !isAnyCheckboxChecked;
         }
     }
 }

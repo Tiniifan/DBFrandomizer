@@ -55,10 +55,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Bottom.cs" />
+    <Compile Include="Common\Face.cs" />
+    <Compile Include="Common\FaceForm.cs" />
+    <Compile Include="Common\Hair.cs" />
     <Compile Include="Common\Model.cs" />
     <Compile Include="Common\Name.cs" />
     <Compile Include="Common\Skill.cs" />
     <Compile Include="Common\SpecialMove.cs" />
+    <Compile Include="Common\Top.cs" />
     <Compile Include="Common\Voice.cs" />
     <Compile Include="Common\Style.cs" />
     <Compile Include="Common\Description.cs" />
